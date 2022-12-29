@@ -292,6 +292,9 @@ fn generate_json(val: JsonValue, pretty: i32, level: i32) -> String {
     JsonValue::Number(n) => n.to_string(),
     JsonValue::Boolean(b) => b.to_string(),
     JsonValue::Array(arr) => {
+      if arr.is_empty() {
+        return "[]".to_string();
+      }
       let mut result = "[".to_string();
       for (i, v) in arr.iter().enumerate() {
         if pretty == 1 {
@@ -313,6 +316,9 @@ fn generate_json(val: JsonValue, pretty: i32, level: i32) -> String {
       result
     }
     JsonValue::Object(obj) => {
+      if obj.is_empty() {
+        return "{}".to_string();
+      }
       let mut result = "{".to_string();
       for (i, (k, v)) in obj.iter().enumerate() {
         if pretty == 1 {
