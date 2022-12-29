@@ -16,8 +16,8 @@ impl Display for FileType {
 #[derive(Debug)]
 pub struct Error {
   pub filetype: FileType,
-  pub message: String,
-  pub index: usize,
+  pub message:  String,
+  pub index:    usize,
 }
 
 impl Error {
@@ -29,13 +29,15 @@ impl Error {
     }
   }
 
-  pub fn json(message: String, index: usize) -> Self {
-    Self::new(FileType::JSON, message, index)
-  }
+  pub fn json(message: String, index: usize) -> Self { Self::new(FileType::JSON, message, index) }
 }
 
 impl Display for Error {
   fn fmt(&self, f: &mut Formatter) -> Result<(), fmt::Error> {
-    write!(f, "ERROR: {} in {} at index {}", self.message, self.filetype, self.index)
+    write!(
+      f,
+      "ERROR: {} in {} at index {}",
+      self.message, self.filetype, self.index
+    )
   }
 }
